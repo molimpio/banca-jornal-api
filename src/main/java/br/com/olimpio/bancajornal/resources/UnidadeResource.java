@@ -6,21 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.olimpio.bancajornal.domain.Categoria;
-import br.com.olimpio.bancajornal.repositories.CategoriaRepository;
+import br.com.olimpio.bancajornal.domain.Unidade;
+import br.com.olimpio.bancajornal.repositories.UnidadeRepository;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
-@RequestMapping(value="/categorias")
-public class CategoriaResource {	
+@RequestMapping(value="/unidades")
+public class UnidadeResource {	
 	
 	@Autowired
-	private CategoriaRepository categoriaRepositoy;
+	private UnidadeRepository unidadeRepositoy;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public List<Categoria> all() {			
-		return categoriaRepositoy.findAll();
+	public List<Unidade> all() {			
+		return unidadeRepositoy.findAll();
 		
 	}
 
