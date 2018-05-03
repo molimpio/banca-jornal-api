@@ -1,51 +1,58 @@
 package br.com.olimpio.bancajornal.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+@Entity
 public class Item implements Serializable {	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private Integer codigo;
 	
-	@OneToOne(mappedBy="id.categoria")
-	private Integer categoria_id;
+	private String codigo;
 	
-	@OneToOne(mappedBy="id.unidade")
-	private Integer unidade_id;
+	@OneToOne
+	@JoinColumn(name="categoria_id")
+	private Categoria categoria;
+	
+	@OneToOne
+	@JoinColumn(name="unidade_id")
+	private Unidade unidade;
 	
 	private Integer qtde;
 	private Date data;
 	private String descricao;
 	private Boolean ativo;
 	
-	@OneToOne(mappedBy="id.banca")
-	private Integer banca_id;
+	@OneToOne
+	@JoinColumn(name="banca_id")
+	private Banca banca;
 	
 	public Item() {
 		super();
 	}
 
-	public Item(Integer id, Integer codigo, Integer categoria_id, Integer unidade_id, Integer qtde, Date data,
-			String descricao, Boolean ativo, Integer banca_id) {
+	public Item(Integer id, String codigo, Categoria categoria, Unidade unidade, Integer qtde, Date data,
+			String descricao, Boolean ativo, Banca banca) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
-		this.categoria_id = categoria_id;
-		this.unidade_id = unidade_id;
+		this.categoria = categoria;
+		this.unidade = unidade;
 		this.qtde = qtde;
 		this.data = data;
 		this.descricao = descricao;
 		this.ativo = ativo;
-		this.banca_id = banca_id;
+		this.banca = banca;
 	}
 
 	public Integer getId() {
@@ -56,28 +63,28 @@ public class Item implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
-	public Integer getCategoria_id() {
-		return categoria_id;
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
-	public void setCategoria_id(Integer categoria_id) {
-		this.categoria_id = categoria_id;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
-	public Integer getUnidade_id() {
-		return unidade_id;
+	public Unidade getUnidade() {
+		return unidade;
 	}
 
-	public void setUnidade_id(Integer unidade_id) {
-		this.unidade_id = unidade_id;
+	public void setUnidade(Unidade unidade) {
+		this.unidade = unidade;
 	}
 
 	public Integer getQtde() {
@@ -112,13 +119,14 @@ public class Item implements Serializable {
 		this.ativo = ativo;
 	}
 
-	public Integer getBanca_id() {
-		return banca_id;
+	public Banca getBanca() {
+		return banca;
 	}
 
-	public void setBanca_id(Integer banca_id) {
-		this.banca_id = banca_id;
+	public void setBanca(Banca banca) {
+		this.banca = banca;
 	}
+	
 	
 	
 }
