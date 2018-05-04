@@ -1,6 +1,7 @@
 package br.com.olimpio.bancajornal.resources;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,12 @@ public class ItemResource {
 		item.setData(new Date());
 		item.setAtivo(true);
 		itemRepositoy.save(item);
-		return true;
+		return true;		
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public List<Item> all() {			
+		return itemRepositoy.findAll();
 		
 	}
 

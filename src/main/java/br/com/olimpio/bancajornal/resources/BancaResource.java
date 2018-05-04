@@ -1,5 +1,7 @@
 package br.com.olimpio.bancajornal.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,12 @@ public class BancaResource {
 		banca.setId(null);
 		bancaRepositoy.save(banca);
 		return true;
+		
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public List<Banca> all() {			
+		return bancaRepositoy.findAll();
 		
 	}
 
