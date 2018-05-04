@@ -125,8 +125,6 @@ public class Item implements Serializable {
 
 	public void setBanca(Banca banca) {
 		this.banca = banca;
-	}
-	
-	
+	}	
 	
 }
