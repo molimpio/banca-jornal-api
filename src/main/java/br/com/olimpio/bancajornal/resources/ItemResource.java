@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import br.com.olimpio.bancajornal.domain.Item;
 import br.com.olimpio.bancajornal.repositories.ItemRepository;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value="/items")
 public class ItemResource {	
 	
