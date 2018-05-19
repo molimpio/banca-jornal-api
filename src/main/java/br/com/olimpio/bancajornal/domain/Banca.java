@@ -16,6 +16,7 @@ public class Banca implements Serializable {
 	private Integer id;
 	private String nome;	
 	private String email;
+	private String cep;
 	private String logradouro;
 	private String bairro;
 	private String localidade;
@@ -26,12 +27,13 @@ public class Banca implements Serializable {
 	}
 		
 
-	public Banca(Integer id, String nome, String email, String logradouro, String bairro, String localidade,
+	public Banca(Integer id, String nome, String email, String cep, String logradouro, String bairro, String localidade,
 			String uf) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
+		this.cep = cep;
 		this.logradouro = logradouro;
 		this.bairro = bairro;
 		this.localidade = localidade;
@@ -62,6 +64,14 @@ public class Banca implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 	public String getLogradouro() {
