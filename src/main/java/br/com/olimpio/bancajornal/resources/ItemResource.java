@@ -47,5 +47,16 @@ public class ItemResource {
 		itemRepositoy.save(item);	
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Item itemObj, @PathVariable Integer id) {
+		
+		Item item = new Item(itemObj.getId(), itemObj.getCodigo(), itemObj.getCategoria(), itemObj.getUnidade(),
+				 itemObj.getQtde(), new Date(), itemObj.getDescricao(), true, itemObj.getBanca());
+		
+		item.setId(id);				
+		itemRepositoy.save(item);	
+		return ResponseEntity.noContent().build();
+	}
 
 }
