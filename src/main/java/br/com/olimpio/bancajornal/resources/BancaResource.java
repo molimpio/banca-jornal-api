@@ -34,5 +34,10 @@ public class BancaResource {
 		return bancaRepositoy.findAll();
 		
 	}
+	
+	@RequestMapping(value="/email", method=RequestMethod.POST)
+	public ResponseEntity<Banca> getByEmail(@RequestBody Banca banca) {			
+		return ResponseEntity.ok(bancaRepositoy.findByEmail(banca.getEmail()));
+	}
 
 }
