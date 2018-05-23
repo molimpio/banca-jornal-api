@@ -1,5 +1,6 @@
 package br.com.olimpio.bancajornal.resources;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,8 +35,16 @@ public class ItemResource {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Item> all() {			
-		return itemRepositoy.findAll();
+		List<Item> listaItems = itemRepositoy.findAll();
+		List<Item> listaAtivos = new ArrayList<>();
 		
+		for(Item i: listaItems) {
+			if(i.getAtivo() == true) {
+				listaAtivos.add(i);
+			}
+		}
+		
+		return listaAtivos;
 	}
 	
 	 
