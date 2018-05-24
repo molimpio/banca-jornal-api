@@ -8,8 +8,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.olimpio.bancajornal.domain.Categoria;
+import br.com.olimpio.bancajornal.domain.Contato;
 import br.com.olimpio.bancajornal.domain.Unidade;
 import br.com.olimpio.bancajornal.repositories.CategoriaRepository;
+import br.com.olimpio.bancajornal.repositories.ContatoRepository;
 import br.com.olimpio.bancajornal.repositories.UnidadeRepository;
 
 @SpringBootApplication
@@ -20,6 +22,9 @@ public class BancaJornalApiApplication implements CommandLineRunner {
 	
 	@Autowired
 	private UnidadeRepository unidadeRepository;
+	
+	@Autowired
+	private ContatoRepository contatoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BancaJornalApiApplication.class, args);					
@@ -40,5 +45,12 @@ public class BancaJornalApiApplication implements CommandLineRunner {
 		Unidade uni2 = new Unidade(null, "Unitário");
 		
 		unidadeRepository.save(Arrays.asList(uni1, uni2));
+		
+		//---------------------------------------------------------------------------
+		
+		Contato c1 = new Contato(null, "João Paulo", "joao");
+		Contato c2 = new Contato(null, "Maria Santos", "maria");
+		
+		contatoRepository.save(Arrays.asList(c1, c2));
 	}
 }
