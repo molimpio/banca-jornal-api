@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,13 @@ public class ContatoResource {
 	public List<Contato> all() {					
 		return contatoRepositoy.findAll();
 		
+	}
+	
+	@RequestMapping(value="/contato", method=RequestMethod.POST)
+	public boolean insert(@RequestBody Contato contato) {					
+		contato.setId(null);				
+		contatoRepositoy.save(contato);
+		return true;		
 	}
 
 }
