@@ -1,5 +1,6 @@
 package br.com.olimpio.bancajornal.resources;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,17 +43,23 @@ public class MensagemResource {
 													 @PathVariable Integer id_destinatario) {		
 		
 		List<Mensagem> mensagens = mensagemRepository.findAll();		
+		List<Mensagem> msgFiltradas = new ArrayList<>();
 		
 		for (Mensagem mensagem: mensagens) {
-			Contato origem = new Contato();
-			origem = contatoRepository.findOne(mensagem.getOrigem_id());
-			mensagem.setOrigem(origem);
 			
-			Contato destino = new Contato();
-			destino = contatoRepository.findOne(mensagem.getDestino_id());
-			
-			mensagem.setDestino(destino);
+			if (mensagem.getOrigem_id() == id_remetente && mensagem.getDestino_id() == id_destinatario) {
+				Contato origem = new Contato();
+				origem = contatoRepository.findOne(mensagem.getOrigem_id());
+				mensagem.setOrigem(origem);
+				
+				Contato destino = new Contato();
+				destino = contatoRepository.findOne(mensagem.getDestino_id());
+				
+				mensagem.setDestino(destino);
+				
+				msgFiltradas.add(mensagem);				
+			}			
 		}
-		return mensagens;
+		return msgFiltradas;
 	}
 }
