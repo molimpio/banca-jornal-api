@@ -21,24 +21,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ContatoResource {	
 	
 	@Autowired
-	private ContatoRepository contatoRepositoy;
+	private ContatoRepository contatoRepository;
 	
 	@RequestMapping(value="/rawcontatos", method=RequestMethod.GET)
 	public List<Contato> all() {					
-		return contatoRepositoy.findAll();
+		return contatoRepository.findAll();
 		
 	}
 	
 	@RequestMapping(value="/contato", method=RequestMethod.POST)
 	public ResponseEntity<Contato> insert(@RequestBody Contato contato) {					
 		contato.setId(null);				
-		contatoRepositoy.save(contato);
+		contatoRepository.save(contato);
 		return ResponseEntity.ok(contato);
 	}
 	
 	@RequestMapping(value="/contato/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Contato> getContatoById(@PathVariable Integer id) {		
-		return ResponseEntity.ok(contatoRepositoy.findOne(id));
+		return ResponseEntity.ok(contatoRepository.findOne(id));
 	}
 
 }
