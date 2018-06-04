@@ -18,18 +18,23 @@ public class Mensagem implements Serializable {
 	private Integer destino_id;
 	private String assunto;	
 	private String corpo;
+	private Contato origem;
+	private Contato destino;
 	
 	public Mensagem() {
 		super();
 	}
 
-	public Mensagem(Integer id, Integer origem_id, Integer destino_id, String assunto, String corpo) {
+	public Mensagem(Integer id, Integer origem_id, Integer destino_id, String assunto, String corpo,
+			Contato origem, Contato destino) {
 		super();
 		this.id = id;
 		this.origem_id = origem_id;
 		this.destino_id = destino_id;
 		this.assunto = assunto;
 		this.corpo = corpo;
+		this.origem = origem;
+		this.destino = destino;
 	}
 
 	public Integer getId() {
@@ -70,6 +75,22 @@ public class Mensagem implements Serializable {
 
 	public void setCorpo(String corpo) {
 		this.corpo = corpo;
+	}
+
+	public Contato getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(Contato origem) {
+		this.origem = origem;
+	}
+
+	public Contato getDestino() {
+		return destino;
+	}
+
+	public void setDestino(Contato destino) {
+		this.destino = destino;
 	}	
 	
 }
